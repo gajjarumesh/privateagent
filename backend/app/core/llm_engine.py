@@ -62,6 +62,16 @@ class LLMEngine:
         try:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
                 response = await client.post(url, json=payload)
+
+                # Handle specific HTTP status codes
+                if response.status_code == 404:
+                    logger.error(f"Model '{model}' not found in Ollama")
+                    return {
+                        "response": f"Model '{model}' not found. Please run 'ollama pull {model}' first.",
+                        "model": model,
+                        "error": "model_not_found",
+                    }
+
                 response.raise_for_status()
                 data = response.json()
 
@@ -78,6 +88,19 @@ class LLMEngine:
                 "response": "I apologize, but the request timed out. Please try again.",
                 "model": model,
                 "error": "timeout",
+            }
+        except httpx.HTTPStatusError as e:
+            logger.error(f"LLM HTTP status error: {e.response.status_code}")
+            if e.response.status_code == 500:
+                return {
+                    "response": "Ollama encountered a server error. Please try again.",
+                    "model": model,
+                    "error": "server_error",
+                }
+            return {
+                "response": f"HTTP error occurred: {e.response.status_code}",
+                "model": model,
+                "error": str(e),
             }
         except httpx.HTTPError as e:
             logger.error(f"LLM HTTP error: {str(e)}")

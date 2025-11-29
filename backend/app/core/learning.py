@@ -3,7 +3,7 @@
 import logging
 import uuid
 from typing import Optional, Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 
@@ -51,7 +51,7 @@ class FeedbackLearning:
             rating=rating,
             correction=correction,
             module=module,
-            created_at=datetime.utcnow(),
+            created_at=datetime.now(timezone.utc),
         )
 
         db.add(feedback)
@@ -83,7 +83,7 @@ class FeedbackLearning:
                     "session_id": feedback.session_id,
                 },
                 weight=1.0,
-                created_at=datetime.utcnow(),
+                created_at=datetime.now(timezone.utc),
             )
 
             db.add(pattern)

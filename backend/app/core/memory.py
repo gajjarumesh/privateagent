@@ -2,7 +2,7 @@
 
 import logging
 from typing import Dict, List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from collections import defaultdict
 
 from app.config import settings
@@ -24,7 +24,7 @@ class Message:
         self.role = role
         self.content = content
         self.message_id = message_id or generate_session_id()[:16]
-        self.timestamp = datetime.utcnow()
+        self.timestamp = datetime.now(timezone.utc)
         self.metadata = metadata or {}
 
     def to_dict(self) -> dict:
@@ -52,7 +52,7 @@ class ConversationMemory:
         session_id = session_id or generate_session_id()
         self._sessions[session_id] = []
         self._metadata[session_id] = {
-            "created_at": datetime.utcnow().isoformat(),
+            "created_at": datetime.now(timezone.utc).isoformat(),
             "message_count": 0,
         }
         logger.info(f"Created new session: {session_id}")
@@ -79,7 +79,7 @@ class ConversationMemory:
         # Update metadata
         if session_id in self._metadata:
             self._metadata[session_id]["message_count"] = len(self._sessions[session_id])
-            self._metadata[session_id]["last_message_at"] = datetime.utcnow().isoformat()
+            self._metadata[session_id]["last_message_at"] = datetime.now(timezone.utc).isoformat()
 
         return message.message_id
 

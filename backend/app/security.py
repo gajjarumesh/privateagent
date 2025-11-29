@@ -2,7 +2,7 @@
 
 import re
 import secrets
-from typing import Optional
+from typing import Optional, Tuple
 from cryptography.fernet import Fernet
 
 from app.config import settings
@@ -64,7 +64,7 @@ def sanitize_input(text: str) -> str:
     return text.strip()
 
 
-def validate_code_safety(code: str) -> tuple[bool, str]:
+def validate_code_safety(code: str) -> Tuple[bool, str]:
     """
     Validate code for potentially dangerous operations.
 

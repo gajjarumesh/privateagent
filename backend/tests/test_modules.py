@@ -48,6 +48,7 @@ class TestDeveloperAssistant:
         assert assistant._detect_language("JavaScript function") == "javascript"
         assert assistant._detect_language("create a .py file") == "python"
         assert assistant._detect_language("generic request") == "python"  # Default
+        assert assistant._detect_language("use golang for this") == "go"
 
     @pytest.mark.asyncio
     async def test_process(self):

@@ -2,11 +2,16 @@
 
 import os
 from typing import Optional
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+    )
 
     # Application
     app_name: str = "ARIA"
@@ -37,12 +42,6 @@ class Settings(BaseSettings):
 
     # CORS
     cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
-
-    class Config:
-        """Pydantic config."""
-
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
 
 settings = Settings()

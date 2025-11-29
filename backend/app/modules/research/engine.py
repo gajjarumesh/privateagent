@@ -3,7 +3,7 @@
 import logging
 import uuid
 from typing import Dict, Any, Optional, List
-from datetime import datetime
+from datetime import datetime, timezone
 
 from app.core.llm_engine import LLMEngine
 
@@ -178,7 +178,7 @@ Provide a concise summary (2-3 sentences) of what the search results indicate ab
         self._documents[doc_id] = {
             "source": source,
             "metadata": metadata or {},
-            "created_at": datetime.utcnow().isoformat(),
+            "created_at": datetime.now(timezone.utc).isoformat(),
             "chunk_count": len(chunks),
         }
 

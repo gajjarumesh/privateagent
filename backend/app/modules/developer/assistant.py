@@ -80,11 +80,7 @@ Response:"""
         """Detect programming language from message."""
         message_lower = message.lower()
 
-        for lang in self.SUPPORTED_LANGUAGES:
-            if lang in message_lower:
-                return lang
-
-        # Check for file extensions
+        # Check for file extensions first (more specific)
         extension_map = {
             ".py": "python", ".js": "javascript", ".ts": "typescript",
             ".java": "java", ".go": "go", ".rs": "rust",
@@ -93,6 +89,28 @@ Response:"""
 
         for ext, lang in extension_map.items():
             if ext in message_lower:
+                return lang
+
+        # Check for language names (use word boundaries to avoid partial matches)
+        # Order matters - check longer/more specific names first
+        language_patterns = [
+            ("javascript", "javascript"),
+            ("typescript", "typescript"),
+            ("python", "python"),
+            ("java", "java"),
+            ("cpp", "cpp"),
+            ("rust", "rust"),
+            ("ruby", "ruby"),
+            ("swift", "swift"),
+            ("kotlin", "kotlin"),
+            ("go ", "go"),  # Space after to avoid matching in words like "algorithm"
+            ("golang", "go"),
+            ("php", "php"),
+            ("sql", "sql"),
+        ]
+
+        for pattern, lang in language_patterns:
+            if pattern in message_lower:
                 return lang
 
         return "python"  # Default
