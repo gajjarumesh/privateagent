@@ -1,0 +1,209 @@
+.dashboard {
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.dashboard.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard .loading-spinner {
+  font-size: 2rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--spacing-md);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.dashboard-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.dashboard-header h1 {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.dashboard-header p {
+  color: var(--text-secondary);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.dashboard-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+}
+
+.dashboard-card h3 {
+  font-size: 1rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+/* Status Card */
+.status-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  margin-bottom: var(--spacing-md);
+}
+
+.status-badge.healthy {
+  background: rgba(35, 134, 54, 0.2);
+  color: var(--accent-secondary);
+}
+
+.status-badge.offline {
+  background: rgba(248, 81, 73, 0.2);
+  color: var(--accent-error);
+}
+
+.status-details p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.status-error {
+  color: var(--accent-error);
+  font-size: 0.875rem;
+}
+
+/* LLM Card */
+.llm-info p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.privacy-badge {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(35, 134, 54, 0.1);
+  border: 1px solid var(--accent-secondary);
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  color: var(--accent-secondary);
+  text-align: center;
+}
+
+/* Stats Card */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.stat {
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.stat.positive .stat-value {
+  color: var(--accent-secondary);
+}
+
+.stat.negative .stat-value {
+  color: var(--accent-error);
+}
+
+.no-stats {
+  color: var(--text-muted);
+  text-align: center;
+  padding: var(--spacing-lg);
+}
+
+/* Modules Card */
+.modules-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.module-item {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.module-item .module-icon {
+  font-size: 1.5rem;
+}
+
+.module-item strong {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.module-item p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Security Card */
+.security-list {
+  list-style: none;
+}
+
+.security-list li {
+  padding: var(--spacing-xs) 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Tips Card */
+.tips-list {
+  list-style: none;
+}
+
+.tips-list li {
+  padding: var(--spacing-sm) 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.tips-list li:last-child {
+  border-bottom: none;
+}
+
+/* Error */
+.dashboard-error {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: rgba(248, 81, 73, 0.1);
+  border: 1px solid var(--accent-error);
+  border-radius: var(--radius-md);
+  color: var(--accent-error);
+}

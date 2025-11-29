@@ -1,0 +1,140 @@
+.message-bubble {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg);
+  max-width: 85%;
+}
+
+.message-bubble.user {
+  align-self: flex-end;
+  background: var(--accent-primary);
+  color: white;
+  flex-direction: row-reverse;
+}
+
+.message-bubble.assistant {
+  align-self: flex-start;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.message-bubble.error {
+  background: rgba(248, 81, 73, 0.1);
+  border-color: var(--accent-error);
+}
+
+.message-bubble.error .message-text {
+  color: var(--accent-error);
+}
+
+.message-avatar {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.message-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.message-text {
+  line-height: 1.6;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.message-text .code-block {
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-size: 0.875rem;
+}
+
+.message-bubble.user .code-block {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.message-text .inline-code {
+  background: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+}
+
+.message-bubble.user .inline-code {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.message-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--border-color-light);
+}
+
+.feedback-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  transition: background var(--transition-fast);
+  font-size: 1rem;
+}
+
+.feedback-btn:hover {
+  background: var(--bg-hover);
+}
+
+.feedback-thanks {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.tokens-used {
+  margin-left: auto;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.correction-input {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.correction-input textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.correction-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.correction-actions button {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  font-size: 0.875rem;
+}
+
+.correction-actions button:hover {
+  background: var(--bg-hover);
+}
+
+.correction-actions .submit-btn {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.correction-actions .submit-btn:hover {
+  opacity: 0.9;
+}
